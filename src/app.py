@@ -1,7 +1,7 @@
 import streamlit as st
-from src.preprocessing import preprocess_dataset
-from src.retriever import Retriever
-from src.conversation import Conversation
+from preprocessing import preprocess_dataset
+from retriever import Retriever
+from conversation import Conversation
 
 # Load dataset
 df = preprocess_dataset("data/fitness.csv")
