@@ -18,13 +18,19 @@ class QADataset(Dataset):
         a = torch.tensor(self.tokenizer(self.answers[idx]), dtype=torch.long)
         return q, a
 
-def train(model, dataset, epochs=3, batch_size=16, lr=1e-3):
+def train(model, dataset, epochs=3, batch_size=16, lr=1e-3, device=None):
+    device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+    model = model.to(device)
+    
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
     for epoch in range(epochs):
         for q, a in tqdm(loader):
+            q = q.to(device)
+            a = a.to(device)
+            
             optimizer.zero_grad()
             out = model(q)
             loss = criterion(out, a)
