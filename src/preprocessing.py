@@ -1,33 +1,25 @@
-import json
 import pandas as pd
+import nltk
+import re
+from nltk.tokenize import word_tokenize
 
-def load_jsonl(file_path):
-    data = []
-    with open(file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            data.append(json.loads(line))
-    return data
+nltk.download('punkt')
 
-def fill_missing_context(data, structured_fields=None):
-    """
-    Fill missing context from structured fields or question itself.
-    structured_fields: list of keys in the JSON object to use as context.
-    """
-    for entry in data:
-        if not entry.get("context"):
-            if structured_fields:
-                context_parts = [f"{k}: {entry.get(k, '')}" for k in structured_fields]
-                entry["context"] = " ".join(context_parts)
-            else:
-                entry["context"] = entry["question"]
-    return data
+def clean_text(text):
+    if not isinstance(text, str):
+        return ""
+    text = text.lower()
+    text = re.sub(r'[^a-z0-9\s]', '', text)
+    return text.strip()
 
-def save_jsonl(data, file_path):
-    with open(file_path, 'w', encoding='utf-8') as f:
-        for entry in data:
-            f.write(json.dumps(entry) + "\n")
-
-if __name__ == "__main__":
-    data = load_jsonl("../data/samples.jsonl")
-    data = fill_missing_context(data, structured_fields=["Title", "Desc", "BodyPart", "Equipment"])
-    save_jsonl(data, "../data/preprocessed_samples.jsonl")
+def preprocess_dataset(csv_path):
+    df = pd.read_csv(csv_path)
+    df['context'] = df['context'].fillna('')
+    df['question'] = df['question'].fillna('')
+    df['answer'] = df['answer'].fillna('')
+    
+    df['context_clean'] = df['context'].apply(clean_text)
+    df['question_clean'] = df['question'].apply(clean_text)
+    df['answer_clean'] = df['answer'].apply(clean_text)
+    
+    return df

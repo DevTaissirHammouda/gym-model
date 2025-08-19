@@ -1,13 +1,15 @@
 torch
-transformers
-datasets
-scikit-learn
-pandas
+torchtext
 numpy
-faiss-cpu
-streamlit
+pandas
+scikit-learn
+tqdm
+nltk
+sentence-transformers
 fastapi
 uvicorn
+streamlit
+
 
 
 //to install pip install -r requirements.txt
