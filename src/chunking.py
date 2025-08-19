@@ -1,9 +1,18 @@
-def chunk_text(text, max_len=400, stride=50):
-    tokens = text.split()
+from nltk.tokenize import sent_tokenize
+import nltk
+nltk.download('punkt')
+
+def chunk_text(text, max_len=100):
+    sentences = sent_tokenize(text)
     chunks = []
-    start = 0
-    while start < len(tokens):
-        end = min(start + max_len, len(tokens))
-        chunks.append(" ".join(tokens[start:end]))
-        start += max_len - stride
+    chunk = ""
+    for sent in sentences:
+        if len(chunk.split()) + len(sent.split()) > max_len:
+            if chunk:
+                chunks.append(chunk)
+            chunk = sent
+        else:
+            chunk += " " + sent
+    if chunk:
+        chunks.append(chunk)
     return chunks
