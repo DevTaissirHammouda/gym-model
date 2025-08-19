@@ -1,0 +1,13 @@
+torch
+transformers
+datasets
+scikit-learn
+pandas
+numpy
+faiss-cpu
+streamlit
+fastapi
+uvicorn
+
+
+//to install pip install -r requirements.txt
