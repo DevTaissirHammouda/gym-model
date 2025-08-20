@@ -19,6 +19,7 @@ llm = Llama(
 # print("GPU layers used:", llm.n_gpu_layers)
 
 def generate_answer(contexts, question):
+    
     prompt = (
         "You are a fitness coach AI. Use the following info to answer:\n"
         + "\n".join(contexts)
