@@ -1,0 +1,24 @@
+[33m7fb6b95[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m docs: add comprehensive readme for ai fitness coach project
+[33m98019b5[m feat(app): add loading spinner during answer generation
+[33m2b34b38[m chore: update gitignore to exclude models directory
+[33m69b1964[m Remove large CSVs from tracking
+[33m4244861[m feat: add local LLM model for offline fitness QA responses
+[33m552962e[m feat(retriever): add save/load functionality for embeddings and documents
+[33m20242fa[m datasets
+[33me2d4ab6[m Add large CSVs using Git LFS
+[33m99c9fe5[m feat: add CUDA availability check script
+[33m4d28ffc[m refactor: improve device handling in model training and vector store
+[33m77ce930[m refactor(vector): replace TF-IDF with sentence transformers for semantic search
+[33mb40e6fc[m refactor(imports): update import paths to use relative imports
+[33m6552517[m test: add quickcheck script for retriever testing
+[33maa4e299[m feat: add fitness qa app with retrieval and conversation flow
+[33m68115f4[m feat: add Conversation class to manage chat history
+[33m1c7b914[m feat(trainer): add basic training pipeline with dataset and model
+[33md9da138[m feat: add basic QA model with embedding and LSTM layers
+[33m64d12a3[m feat: add Retriever class for document indexing and retrieval
+[33m663441d[m feat(vector_store): implement basic vector store with TF-IDF
+[33m715bbba[m refactor(chunking): replace token-based chunking with sentence-based approach
+[33m3736c26[m feat(preprocessing): add text cleaning and dataset preprocessing functions
+[33m0823c18[m chore: remove unused git submodules fitness-qa and fitness-question-answers
+[33mcfd33c3[m feat: add data preprocessing and QA generation scripts
+[33meaa83f3[m build: add initial project structure and dependencies
