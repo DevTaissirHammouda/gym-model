@@ -32,7 +32,9 @@ st.title("🏋️ Fitness & Nutrition QA (Offline Smarter)")
 
 user_q = st.text_input("Ask a question:")
 if user_q:
-    retrieved = retriever.retrieve(user_q, top_k=2)
-    answer = generate_answer([ctx for ctx, _ in retrieved], user_q)
-    conv.add_turn(user_q, answer)
+    with st.spinner("Thinking..."):
+        retrieved = retriever.retrieve(user_q, top_k=2)
+        answer = generate_answer([ctx for ctx, _ in retrieved], user_q)
+        conv.add_turn(user_q, answer)
     st.write("**Answer:**", answer)
+
